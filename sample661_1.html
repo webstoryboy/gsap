@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {width: 100%;}
+        .box span {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
+            color: #fff; margin: 4px;
+            background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span class="box1_1">box</span>
+    </div>
+
+    <div class="choice1">
+        <a href="#" class="off1">리셋</a>
+        <a href="#" class="btn1">클릭하면 오른쪽으로 움직입니다.</a>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script>
+        $(".choice1 .off1").on("click",function(e){
+            e.preventDefault();
+            TweenMax.to(".box1_1", 1, {left:"0%"});
+        });
+        $(".choice1 .btn1").on("click",function(e){
+            e.preventDefault();
+            TweenMax.to(".box1_1", 1, {left:"90%"});
+        });    
+    </script>
+</body>
+</html>
