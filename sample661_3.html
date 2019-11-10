@@ -32,18 +32,18 @@
 
         //jquery
         // $(".choice .start").on("click",function(){
-        //     $(".box1").animate({ left:"80%" }, 1000);
+        //     $(".box1").animate({ left:"+=100" }, 1000);
         // }); 
         // $(".choice .reset").on("click",function(){
-        //     $(".box1").animate({ left:"0%" }, 0);
+        //     $(".box1").animate({ left:"0" }, 0);
         // });
 
         //gsap
         // $(".choice .start").on("click",function(){
-        //     TweenMax.to(".box1", 1, {left:"80%"});
+        //     TweenMax.to(".box1", 1, { left:"+=100" });
         // });  
         // $(".choice .reset").on("click",function(){
-        //     TweenMax.to(".box1", 0, {left:"0%"});
+        //     TweenMax.to(".box1", 0, { left:"0" });
         // });  
     
         //javascript
@@ -54,10 +54,10 @@
         resetBtn.addEventListener('click', moveReset);
         
         function moveStart(){
-            TweenMax.to('.box1', 1, {left: "80%"});
+            TweenMax.to(".box1", 1, { left:"+=100" });
         }
         function moveReset(){
-            TweenMax.to('.box1', 0, {left: "0%"});
+            TweenMax.to(".box1", 0, { left:"0" });
         }
     </script>
 </body>

@@ -16,6 +16,8 @@
 <body>
     <div class="box_wrap">
         <div class="box1">box</div>
+        <div class="box2">box</div>
+        <div class="box3">box</div>
     </div>
 
     <div class="choice">
@@ -32,18 +34,18 @@
 
         //jquery
         // $(".choice .start").on("click",function(){
-        //     $(".box1").animate({ left:"80%" }, 1000);
+        //     $(".box1, .box2, .box3").animate({ left:"80%" }, 1000);
         // }); 
         // $(".choice .reset").on("click",function(){
-        //     $(".box1").animate({ left:"0%" }, 0);
+        //     $(".box1, .box2, .box3").animate({ left:"0%" }, 0);
         // });
 
         //gsap
         // $(".choice .start").on("click",function(){
-        //     TweenMax.to(".box1", 1, {left:"80%"});
+        //     TweenMax.to([".box1, .box2, .box3"], 1, {left:"80%"});
         // });  
         // $(".choice .reset").on("click",function(){
-        //     TweenMax.to(".box1", 0, {left:"0%"});
+        //     TweenMax.to([".box1, .box2, .box3"], 0, {left:"0%"});
         // });  
     
         //javascript
@@ -54,10 +56,10 @@
         resetBtn.addEventListener('click', moveReset);
         
         function moveStart(){
-            TweenMax.to('.box1', 1, {left: "80%"});
+            TweenMax.to([".box1, .box2, .box3"], 1, {left: "80%"});
         }
         function moveReset(){
-            TweenMax.to('.box1', 0, {left: "0%"});
+            TweenMax.to([".box1, .box2, .box3"], 0, {left: "0%"});
         }
     </script>
 </body>

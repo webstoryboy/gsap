@@ -20,7 +20,7 @@
 
     <div class="choice">
         <a href="#" class="reset">리셋</a>
-        <a href="#" class="start">클릭하면 오른쪽으로 움직입니다.</a>
+        <a href="#" class="start">클릭하면 오른쪽으로 이동하면서 백그라운드 색이 변경됩니다.</a>
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -32,19 +32,21 @@
 
         //jquery
         // $(".choice .start").on("click",function(){
-        //     $(".box1").animate({ left:"80%" }, 1000);
+        //     $(".box1").animate({ left: "80%" }, 2000);
+        //     $(".box1").css({ backgroundImage: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" });
         // }); 
         // $(".choice .reset").on("click",function(){
-        //     $(".box1").animate({ left:"0%" }, 0);
+        //     $(".box1").animate({ left:"0" }, 0);
+        //     $(".box1").css({ backgroundImage: "linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%)" });
         // });
 
         //gsap
-        // $(".choice .start").on("click",function(){
-        //     TweenMax.to(".box1", 1, {left:"80%"});
-        // });  
-        // $(".choice .reset").on("click",function(){
-        //     TweenMax.to(".box1", 0, {left:"0%"});
-        // });  
+        $(".choice .start").on("click",function(){
+            TweenMax.to(".box1", 2, {left:"80%", backgroundImage:"linear-gradient(135deg, #667eea 0%, #764ba2 100%)"});
+        });  
+        $(".choice .reset").on("click",function(){
+            TweenMax.to(".box1", 0, { left: "0", backgroundImage: "linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%)"});
+        });  
     
         //javascript
         const startBtn = document.querySelector('.start');
@@ -54,10 +56,10 @@
         resetBtn.addEventListener('click', moveReset);
         
         function moveStart(){
-            TweenMax.to('.box1', 1, {left: "80%"});
+            TweenMax.to(".box1", 2, {left:"80%", backgroundImage:"linear-gradient(135deg, #667eea 0%, #764ba2 100%)"});
         }
         function moveReset(){
-            TweenMax.to('.box1', 0, {left: "0%"});
+            TweenMax.to(".box1", 0, { left: "0", backgroundImage: "linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%)"});
         }
     </script>
 </body>
