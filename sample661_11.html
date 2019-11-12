@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>GSAP</title>
+    <style>
+        .box_wrap {width: 100%;}
+        .box_wrap div {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
+            color: #fff; margin: 4px;
+            background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="box_wrap">
+        <div class="box1">box</div>
+        <div class="box2">box</div>
+        <div class="box3">box</div>
+        <div class="box4">box</div>
+        <div class="box5">box</div>
+        <div class="box6">box</div>
+        <div class="box7">box</div>
+        <div class="box8">box</div>
+    </div>
+
+    <div class="choice">
+        <a href="#" class="reset">리셋</a>
+        <a href="#" class="start">클릭하면 이징 효과에 따라 이동합니다.</a>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script>
+        $("a").on("click",function(e){
+            e.preventDefault();
+        });
+
+        //jquery
+        $(".choice .start").on("click",function(){
+            $(".box1").animate({ left: "80%" }, 2000, "swing");
+            $(".box2").animate({ left: "80%" }, 2000, "easeInQuad");
+            $(".box3").animate({ left: "80%" }, 2000, "easeOutQuint");
+            $(".box4").animate({ left: "80%" }, 2000, "easeInOutBack");
+            $(".box5").animate({ left: "80%" }, 2000, "easeOutBounce");
+            $(".box6").animate({ left: "80%" }, 2000, "easeOutElastic");
+            $(".box7").animate({ left: "80%" }, 2000, "easeInCirc");
+            $(".box8").animate({ left: "80%" }, 2000, "easeOutExpo");
+        }); 
+        $(".choice .reset").on("click",function(){
+            $(".box1, .box2, .box3 .box4 .box5 .box6 .box7 .box8").animate({ left: "0"}, 0);
+        });
+
+        //gsap
+        // $(".choice .start").on("click",function(){
+        //     TweenMax.to(".box1",2, {left:"90%"});
+        //     TweenMax.to(".box2",2, {left:"90%", ease:Power0.easeOut});
+        //     TweenMax.to(".box3",2, {left:"90%", ease:Power1.easeOut});
+        //     TweenMax.to(".box4",2, {left:"90%", ease:Power2.easeOut});
+        //     TweenMax.to(".box5",2, {left:"90%", ease:Power3.easeOut});
+        //     TweenMax.to(".box6",2, {left:"90%", ease:Power4.easeOut});
+        //     TweenMax.to(".box7",2, {left:"90%", ease:Bounce.easeOut});
+        //     TweenMax.to(".box8",2, {left:"90%", ease:SlowMo.easeOut});
+        // });  
+        // $(".choice .reset").on("click",function(){
+        //     TweenMax.to([".box1",".box2",".box3",".box4",".box5",".box6",".box7",".box8"], 0, { left: "0", rotationY: "0deg" });
+        // });  
+    
+        //javascript
+        // const startBtn = document.querySelector('.start');
+        // const resetBtn = document.querySelector('.reset');
+
+        // startBtn.addEventListener('click', moveStart);
+        // resetBtn.addEventListener('click', moveReset);
+        
+        // function moveStart(){
+        //     TweenMax.to(".box1",2, {left:"90%"});
+        //     TweenMax.to(".box2",2, {left:"90%", ease:Power0.easeOut});
+        //     TweenMax.to(".box3",2, {left:"90%", ease:Power1.easeOut});
+        //     TweenMax.to(".box4",2, {left:"90%", ease:Power2.easeOut});
+        //     TweenMax.to(".box5",2, {left:"90%", ease:Power3.easeOut});
+        //     TweenMax.to(".box6",2, {left:"90%", ease:Power4.easeOut});
+        //     TweenMax.to(".box7",2, {left:"90%", ease:Bounce.easeOut});
+        //     TweenMax.to(".box8",2, {left:"90%", ease:SlowMo.easeOut});
+        // }
+        // function moveReset(){
+        //    TweenMax.to([".box1",".box2",".box3",".box4",".box5",".box6",".box7",".box8"], 0, { left: "0", rotationY: "0deg" });
+        // }
+    </script>
+</body>
+</html>

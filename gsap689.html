@@ -1,14 +1,14 @@
-<h2>TweenMax.to</h2>
+<h2>TweenMax.from</h2>
 <p>이동하는 애니메이션입니다.</p>
 
 <hr>
 
-<h3>이동하기</h3>
+<h3>반대로 이동하기</h3>
 <p>tweenMax를 이용하여 이동하는 애니메이션입니다.</p>
 
 <h4 class="pt50">문법(Syntax)</h4>
 <p class="blue">
-    TweenMax.to("target", duration, vars);
+    TweenMax.from("target", duration, vars);
 </p>
 
 
@@ -22,8 +22,8 @@
 
 
 <!-- Sample1 -->
-<h4 class="pt50">이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample661_1.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
-<p>버튼을 클릭하면 오른쪽으로 이동하는 애니메이션입니다.</p>
+<h4 class="pt50">반대로 이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample689_1.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>버튼을 클릭하면 오른쪽 반대로 이동하는 애니메이션입니다.</p>
 <div class="sample">
     <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
     <div class="ex">
@@ -36,7 +36,7 @@
     
     <div class="choice">
         <a href="#" class="reset">리셋</a>
-        <a href="#" class="start">클릭하면 오른쪽으로 움직입니다.</a>
+        <a href="#" class="start">클릭하면 오른쪽 반대로 움직입니다.</a>
     </div>
 </div>
 <!-- sample -->
@@ -45,12 +45,7 @@
 <div class="sample">
     <h5>JQUERY<span class="dot"><i></i><i></i><i></i></span></h5>
     <div class="script on">
-<pre class="line-numbers"><code class="language-javascript">$(".start").on("click", function(){
-    $(".box1").animate({ left:"80%" }, 1000);
-}); 
-$(".reset").on("click", function(){
-    $(".box1").animate({ left:"0%" }, 0);
-});</code></pre>
+<pre class="line-numbers"><code class="language-javascript">//이런 기능이 없음</code></pre>
     </div>
 </div>
 <!-- sample -->
@@ -59,10 +54,10 @@ $(".reset").on("click", function(){
     <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
     <div class="script on">
 <pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
-    TweenMax.to(".box1", 1, { left:"80%" });
+    TweenMax.from(".box1", 1, { left:"80%" });
 });  
 $(".reset").on("click",function(){
-    TweenMax.to(".box1", 0, { left:"0%" });
+    TweenMax.from(".box1", 0, { left:"0%" });
 });</code></pre>
     </div>
 </div>
@@ -78,10 +73,10 @@ startBtn.addEventListener('click', moveStart);
 resetBtn.addEventListener('click', moveReset);
 
 function moveStart(){
-    TweenMax.to('.box1', 1, {left: "80%"});
+    TweenMax.from('.box1', 1, {left: "80%"});
 }
 function moveReset(){
-    TweenMax.to('.box1', 0, {left: "0%"});
+    TweenMax.from('.box1', 0, {left: "0%"});
 }</code></pre>
     </div>
 </div>
@@ -132,10 +127,10 @@ function moveReset(){
 
         //gsap
         // $(".start").on("click",function(){
-        //     TweenMax.to(".box1", 1, { left:"80%" });
+        //     TweenMax.from(".box1", 1, { left:"80%" });
         // });  
         // $(".reset").on("click",function(){
-        //     TweenMax.to(".box1", 0, { left:"0%" });
+        //     TweenMax.from(".box1", 0, { left:"0%" });
         // });  
     
         //javascript
@@ -146,10 +141,10 @@ function moveReset(){
         resetBtn.addEventListener('click', moveReset);
         
         function moveStart(){
-            TweenMax.to('.box1', 1, {left: "80%"});
+            TweenMax.from('.box1', 1, {left: "80%"});
         }
         function moveReset(){
-            TweenMax.to('.box1', 0, {left: "0%"});
+            TweenMax.from('.box1', 0, {left: "0%"});
         }
     &lt;/script&gt;
 &lt;/body&gt;
@@ -160,7 +155,7 @@ function moveReset(){
 
 
 <script>
-    $("a").on("click",function(e){
+    $(".choice a").on("click",function(e){
         e.preventDefault();
     });
 
@@ -171,10 +166,10 @@ function moveReset(){
     resetBtn.addEventListener('click', moveReset);
     
     function moveStart(){
-        TweenMax.to('.box1', 1, {left: "80%"});
+        TweenMax.from('.box1', 1, {left: "80%"});
     }
     function moveReset(){
-        TweenMax.to('.box1', 0, {left: "0%"});
+        TweenMax.from('.box1', 0, {left: "0%"});
     }
 </script>
 <!-- //Sample1 -->

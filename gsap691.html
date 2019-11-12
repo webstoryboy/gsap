@@ -1,0 +1,171 @@
+<h2>Easing</h2>
+<p>이동하는 애니메이션입니다.</p>
+
+<hr>
+
+<h3>이동하기</h3>
+<p>tweenMax를 이용하여 이동하는 애니메이션입니다.</p>
+
+<h4 class="pt50">문법(Syntax)</h4>
+<p class="blue">
+    TweenMax.to("target", duration, vars);
+</p>
+
+
+<style>
+    .box {width: 100%;}
+    .box span {
+        display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
+        color: #fff; margin: 4px;
+        background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);}
+</style>
+
+
+<!-- Sample1 -->
+<h4 class="pt50">이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample661_1.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>버튼을 클릭하면 오른쪽으로 이동하는 애니메이션입니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box">
+            <span class="box1_1">box</span>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice1">
+        <a href="#" class="off1">리셋</a>
+        <a href="#" class="btn1">클릭하면 오른쪽으로 움직입니다.</a>
+    </div>
+</div>
+<!-- sample -->
+
+
+<div class="sample">
+    <h5>jquery<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+        <pre class="line-numbers"><code class="language-javascript">$(".choice1 .off1").on("click",function(e){
+    e.preventDefault();
+    TweenMax.to(".box1_1", 0, {left:"0%"});
+});
+$(".choice1 .btn1").on("click",function(e){
+    e.preventDefault();
+    TweenMax.to(".box1_1", 1, {left:"80%"});
+});  </code></pre>
+    </div>
+</div>
+<!-- sample -->
+
+<div class="sample">
+    <h5>Javascript<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+        <pre class="line-numbers"><code class="language-javascript">var btn1 = document.querySelector('.btn1');
+var btn0 = document.querySelector('.off1');
+
+btn1.addEventListener('click', moveStart);
+btn0.addEventListener('click', moveReset);
+
+function moveStart(){
+    TweenMax.to('.box1_1', 1, {left: "80%"});
+}
+function moveReset(){
+    TweenMax.to('.box1_1', 0, {left: "0%"});
+}</code></pre>
+    </div>
+</div>
+<!-- sample -->
+
+<div class="sample">
+    <h5>html<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+        <pre class="line-numbers"><code class="language-markup">&lt;div class="box"&gt;
+    &lt;span class="box1_1"&gt;box&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</div>
+<!-- sample -->
+
+<div class="sample">
+    <h5>Total<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+        <pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;GSAP&lt;/title&gt;
+    &lt;style&gt;
+        .box {width: 100%;}
+        .box span {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
+            color: #fff; margin: 4px;
+            background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);}
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="box"&gt;
+        &lt;span class="box1_1"&gt;box&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class="choice1"&gt;
+        &lt;a href="#" class="off1"&gt;리셋&lt;/a&gt;
+        &lt;a href="#" class="btn1"&gt;클릭하면 오른쪽으로 움직입니다.&lt;/a&gt;
+    &lt;/div&gt;
+    
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        // $(".choice1 .off1").on("click",function(e){
+        //     e.preventDefault();
+        //     TweenMax.to(".box1_1", 0, {left:"0%"});
+        // });
+        // $(".choice1 .btn1").on("click",function(e){
+        //     e.preventDefault();
+        //     TweenMax.to(".box1_1", 1, {left:"80%"});
+        // });    
+        
+        // var box = document.querySelector('.box1_1');
+        // var btn1 = document.querySelector('.btn1');
+        // var btn0 = document.querySelector('.off1');
+
+        // btn1.addEventListener('click', moveStart);
+        // btn0.addEventListener('click', moveReset);
+        
+        // function moveStart(){
+        //     TweenMax.to(box, 1, {left: "80%"});
+        // }
+        // function moveReset(){
+        //     TweenMax.to(box, 0, {left: "0%"});
+        // }
+    
+        var btn1 = document.querySelector('.btn1');
+        var btn0 = document.querySelector('.off1');
+
+        btn1.addEventListener('click', moveStart);
+        btn0.addEventListener('click', moveReset);
+        
+        function moveStart(){
+            TweenMax.to('.box1_1', 1, {left: "80%"});
+        }
+        function moveReset(){
+            TweenMax.to('.box1_1', 0, {left: "0%"});
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample -->
+
+
+<script>
+    $(".choice1 .off1").on("click",function(e){
+        e.preventDefault();
+        TweenMax.to(".box1_1", 1, {left:"0%"});
+    });
+    $(".choice1 .btn1").on("click",function(e){
+        e.preventDefault();
+        TweenMax.to(".box1_1", 1, {left:"90%"});
+    });    
+</script>
+<!-- //Sample1 -->

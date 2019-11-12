@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>GSAP 콜백함수</title>
+    <style>
+        .box_wrap {width: 100%;}
+        .box_wrap div {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
+            color: #fff; margin: 4px;
+            background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="box_wrap">
+        <div class="box1">box</div>
+        <div class="box2">box</div>
+        <p class="output"></p>
+    </div>
+
+    <div class="choice">
+        <a href="#" class="reset">리셋</a>
+        <a href="#" class="start">클릭하면 이징 효과에 따라 이동합니다.</a>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script>
+        $("a").on("click",function(e){
+            e.preventDefault();
+        });
+
+        //jquery
+        $(".choice .start").on("click",function(){
+            $(".output").text("이 박스는 지금 움직일꺼야!");
+            $(".box1").animate({ left:"90%"}, 1000, function(){
+                $(".output").text("이 박스는 다 움직였어");
+            });
+            $(".box2").delay(2000).animate({ left:"90%"}, 1000, function(){
+                $(".output").text("이 두번째 원은 다 움직였어");
+            });
+        }); 
+        $(".choice .reset").on("click",function(){
+            $(".box1, .box2").animate({ left: "0"}, 0);
+        });
+
+        //gsap
+		// $(".start").on("click",function(){
+		// 	TweenMax.to(".box1",2, {
+		// 		left:"80%",
+		// 		onStart: showMessage,
+		// 		onStartParams: ["이 박스는 지금 움직일꺼야!"],
+		// 		onComplete: showMessage,
+		// 		onCompleteParams: ["이 박스는 다 움직였어"],
+		// 		delay: 1
+		// 	});
+		// 	TweenMax.to(".box2",2, {
+		// 		left:"80%",
+		// 		onStart: showMessage,
+		// 		onStartParams: ["이 두번째 원은 지금 움직일꺼야!"],
+		// 		onComplete: showMessage,
+		// 		onCompleteParams: ["이 두번째 원은 다 움직였어"],
+		// 		delay: 5
+		// 	});
+		// });
+        // $(".choice .reset").on("click",function(){
+        //     TweenMax.to(".box1", 0, { left: "0" });
+        // }); 
+
+		// function showMessage(message) {
+		// 	$(".output").text(message);
+		// }
+    
+        //javascript
+        // const startBtn = document.querySelector('.start');
+        // const resetBtn = document.querySelector('.reset');
+        // const output = document.querySelector('.output');
+
+        // startBtn.addEventListener('click', moveStart);
+        // resetBtn.addEventListener('click', moveReset);
+        
+        // function moveStart(){
+        //     TweenMax.to(".box1",2, {
+		// 		left:"80%",
+		// 		onStart: showMessage,
+		// 		onStartParams: ["이 박스는 지금 움직일꺼야!"],
+		// 		onComplete: showMessage,
+		// 		onCompleteParams: ["이 박스는 다 움직였어"],
+		// 		delay: 1
+		// 	});
+		// 	TweenMax.to(".box2",2, {
+		// 		left:"80%",
+		// 		onStart: showMessage,
+		// 		onStartParams: ["이 두번째 원은 지금 움직일꺼야!"],
+		// 		onComplete: showMessage,
+		// 		onCompleteParams: ["이 두번째 원은 다 움직였어"],
+		// 		delay: 5
+		// 	});
+        // }
+        // function moveReset(){
+        //     TweenMax.to(".box1", 0, { left: "0" });
+        // }
+        // function showMessage(message) {
+		// 	output.innerHTML = message;
+		// }
+    </script>
+</body>
+</html>

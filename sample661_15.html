@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>GSAP timeline1</title>
+    <style>
+        .box_wrap {width: 100%;}
+        .box_wrap div {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
+            color: #fff; margin: 4px;
+            background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="box_wrap">
+        <div class="box1">box</div>
+    </div>
+
+    <div class="choice">
+        <a href="#" class="reset">리셋</a>
+        <a href="#" class="start">클릭하면 이동합니다.</a>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script>
+        $("a").on("click",function(e){
+            e.preventDefault();
+        });
+
+        //jquery
+        $(".start").on("click",function(){
+            $(".box1")
+                .animate({ left: "80%" }, 1000)
+                .animate({ height: "300" }, 1000, 'easeOutQuad')
+                .animate({ opacity: "0.5" }, 1000)
+                .animate({ height: "60" }, 1000, 'easeInOutQuint')
+                .animate({ opacity: "1", left: "0" }, 1000);
+        }); 
+        $(".reset").on("click",function(){
+            $(".box1").animate({ left: "0"}, 0);
+        });
+
+        //gsap
+		// $(".start").on("click",function(){
+        //     var tl = new TimelineLite();
+        //     tl.to(".box1", 1, {left: "80%"});
+        //     tl.to(".box1", 1, {height: 300, ease:Elastic.easeOut});
+        //     tl.to(".box1", 1, {opacity:0.5});
+        //     tl.to(".box1", 1, {height: 60, ease:Elastic.easeOut});
+        //     tl.to(".box1", 1, {opacity:1, left:"0"});
+        // });
+
+        // $(".choice .reset").on("click",function(){
+        //     TweenMax.to(".box1", 0, { left: "0" });
+        // }); 
+
+    
+        //javascript
+        // const startBtn = document.querySelector('.start');
+        // const resetBtn = document.querySelector('.reset');
+
+        // startBtn.addEventListener('click', moveStart);
+        // resetBtn.addEventListener('click', moveReset);
+        
+        // function moveStart(){
+        //     var tl = new TimelineLite();
+        //     tl.to(".box1", 1, {left: "80%"});
+        //     tl.to(".box1", 1, {height: 300, ease:Elastic.easeOut});
+        //     tl.to(".box1", 1, {opacity:0.5});
+        //     tl.to(".box1", 1, {height: 60, ease:Elastic.easeOut});
+        //     tl.to(".box1", 1, {opacity:1, left:"0"});
+        // }
+        // function moveReset(){
+        //     TweenMax.to(".box1", 0, { left: "0" });
+        // }
+    </script>
+</body>
+</html>

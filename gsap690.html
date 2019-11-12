@@ -1,14 +1,14 @@
-<h2>TweenMax.to</h2>
+<h2>Delay</h2>
 <p>이동하는 애니메이션입니다.</p>
 
 <hr>
 
-<h3>이동하기</h3>
+<h3>Delay</h3>
 <p>tweenMax를 이용하여 이동하는 애니메이션입니다.</p>
 
 <h4 class="pt50">문법(Syntax)</h4>
 <p class="blue">
-    TweenMax.to("target", duration, vars);
+    TweenMax.from("target", duration, vars);
 </p>
 
 
@@ -22,21 +22,23 @@
 
 
 <!-- Sample1 -->
-<h4 class="pt50">이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample661_1.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
-<p>버튼을 클릭하면 오른쪽으로 이동하는 애니메이션입니다.</p>
+<h4 class="pt50">딜레이 이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample689_1.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>버튼을 클릭하면 1초씩 딜레이 되면서 이동하는 애니메이션입니다.</p>
 <div class="sample">
     <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
     <div class="ex">
         <!-- ex -->
         <div class="box">
             <span class="box1">box</span>
+            <span class="box2">box</span>
+            <span class="box3">box</span>
         </div>
         <!-- ex -->
     </div>
     
     <div class="choice">
         <a href="#" class="reset">리셋</a>
-        <a href="#" class="start">클릭하면 오른쪽으로 움직입니다.</a>
+        <a href="#" class="start">클릭하면 딜레이 되면서 움직입니다.</a>
     </div>
 </div>
 <!-- sample -->
@@ -45,11 +47,13 @@
 <div class="sample">
     <h5>JQUERY<span class="dot"><i></i><i></i><i></i></span></h5>
     <div class="script on">
-<pre class="line-numbers"><code class="language-javascript">$(".start").on("click", function(){
-    $(".box1").animate({ left:"80%" }, 1000);
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+    $(".box1").delay(1000).animate({ left: "80%" }, 2000);
+    $(".box2").delay(2000).animate({ left: "80%" }, 2000);
+    $(".box3").delay(3000).animate({ left: "80%" }, 2000);
 }); 
-$(".reset").on("click", function(){
-    $(".box1").animate({ left:"0%" }, 0);
+$(".reset").on("click",function(){
+    $(".box1, .box2, .box3").animate({ left: "0"}, 0);
 });</code></pre>
     </div>
 </div>
@@ -59,11 +63,13 @@ $(".reset").on("click", function(){
     <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
     <div class="script on">
 <pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
-    TweenMax.to(".box1", 1, { left:"80%" });
+    TweenMax.to(".box1", 2, { left: "90%", delay:1, rotationY: "720deg" });
+    TweenMax.to(".box2", 2, { left: "90%", delay:2, rotationY: "720deg" });
+    TweenMax.to(".box3", 2, { left: "90%", delay:3, rotationY: "720deg" });
 });  
 $(".reset").on("click",function(){
-    TweenMax.to(".box1", 0, { left:"0%" });
-});</code></pre>
+    TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", rotationY: "0deg" });
+});  </code></pre>
     </div>
 </div>
 <!-- sample -->
@@ -78,10 +84,12 @@ startBtn.addEventListener('click', moveStart);
 resetBtn.addEventListener('click', moveReset);
 
 function moveStart(){
-    TweenMax.to('.box1', 1, {left: "80%"});
+    TweenMax.to(".box1", 2, { left: "80%", delay:1, rotationY: "720deg" });
+    TweenMax.to(".box2", 2, { left: "80%", delay:2, rotationY: "720deg" });
+    TweenMax.to(".box3", 2, { left: "80%", delay:3, rotationY: "720deg" });
 }
 function moveReset(){
-    TweenMax.to('.box1', 0, {left: "0%"});
+    TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", rotationY: "0deg" });
 }</code></pre>
     </div>
 </div>
@@ -99,8 +107,7 @@ function moveReset(){
         .box_wrap {width: 100%;}
         .box_wrap div {
             display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
-            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
-            color: #fff; margin: 4px;
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
             background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
         }
     &lt;/style&gt;
@@ -108,34 +115,40 @@ function moveReset(){
 &lt;body&gt;
     &lt;div class="box_wrap"&gt;
         &lt;div class="box1"&gt;box&lt;/div&gt;
+        &lt;div class="box2"&gt;box&lt;/div&gt;
+        &lt;div class="box3"&gt;box&lt;/div&gt;
     &lt;/div&gt;
 
     &lt;div class="choice"&gt;
         &lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
-        &lt;a href="#" class="start"&gt;클릭하면 오른쪽으로 움직입니다.&lt;/a&gt;
+        &lt;a href="#" class="start"&gt;클릭하면 딜레이 되면서 이동합니다.&lt;/a&gt;
     &lt;/div&gt;
     
     &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
     &lt;script&gt;
-        $("a").on("click",function(e){
+        $(".choice a").on("click",function(e){
             e.preventDefault();
         });
 
         //jquery
-        // $(".start").on("click", function(){
-        //     $(".box1").animate({ left:"80%" }, 1000);
+        // $(".start").on("click",function(){
+        //     $(".box1").delay(1000).animate({ left: "80%" }, 2000);
+        //     $(".box2").delay(2000).animate({ left: "80%" }, 2000);
+        //     $(".box3").delay(3000).animate({ left: "80%" }, 2000);
         // }); 
-        // $(".reset").on("click", function(){
-        //     $(".box1").animate({ left:"0%" }, 0);
+        // $(".reset").on("click",function(){
+        //     $(".box1, .box2, .box3").animate({ left: "0"}, 0);
         // });
 
         //gsap
         // $(".start").on("click",function(){
-        //     TweenMax.to(".box1", 1, { left:"80%" });
+        //     TweenMax.to(".box1", 2, { left: "80%", delay:1, rotationY: "720deg" });
+        //     TweenMax.to(".box2", 2, { left: "80%", delay:2, rotationY: "720deg" });
+        //     TweenMax.to(".box3", 2, { left: "80%", delay:3, rotationY: "720deg" });
         // });  
         // $(".reset").on("click",function(){
-        //     TweenMax.to(".box1", 0, { left:"0%" });
+        //     TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", rotationY: "0deg" });
         // });  
     
         //javascript
@@ -146,10 +159,12 @@ function moveReset(){
         resetBtn.addEventListener('click', moveReset);
         
         function moveStart(){
-            TweenMax.to('.box1', 1, {left: "80%"});
+            TweenMax.to(".box1", 2, { left: "80%", delay:1, rotationY: "720deg" });
+            TweenMax.to(".box2", 2, { left: "80%", delay:2, rotationY: "720deg" });
+            TweenMax.to(".box3", 2, { left: "80%", delay:3, rotationY: "720deg" });
         }
         function moveReset(){
-            TweenMax.to('.box1', 0, {left: "0%"});
+            TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", rotationY: "0deg" });
         }
     &lt;/script&gt;
 &lt;/body&gt;
@@ -160,7 +175,7 @@ function moveReset(){
 
 
 <script>
-    $("a").on("click",function(e){
+    $(".choice a").on("click",function(e){
         e.preventDefault();
     });
 
@@ -171,10 +186,12 @@ function moveReset(){
     resetBtn.addEventListener('click', moveReset);
     
     function moveStart(){
-        TweenMax.to('.box1', 1, {left: "80%"});
+        TweenMax.to(".box1", 2, { left: "80%", delay:1, rotationY: "720deg" });
+        TweenMax.to(".box2", 2, { left: "80%", delay:2, rotationY: "720deg" });
+        TweenMax.to(".box3", 2, { left: "80%", delay:3, rotationY: "720deg" });
     }
     function moveReset(){
-        TweenMax.to('.box1', 0, {left: "0%"});
+        TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", rotationY: "0deg" });
     }
 </script>
 <!-- //Sample1 -->
