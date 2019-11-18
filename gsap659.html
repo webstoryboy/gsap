@@ -1,13 +1,58 @@
 <h2>GSAP</h2>
-<p>웹 브라우저에서 애니메이션을 구현하기 위한 자바스크립트 라이브러리입니다. 기존 CSS Animation나 자바스크립트 Animation보다 탁원한 퍼포먼스를 발휘할 수 있도록 최적화 된 애니메이션 전용 라이브러리입니다.
+<p>
+	웹 브라우저에서 탁월한 애니메이션을 구현하기 위한 자바스크립트 라이브러이입니다. 
+	기존의 CSS 애니메이션과 JavsScript 애니메이션보다 사용성이 편하고, 탁월한 퍼포먼스가 돋보이는
+	애니메이션 전용 라이브러리입니다.
 </p>
 
 <hr>
 
-<h3>GSAP 구성</h3>
+<h3>GSAP3</h3>
+<p>2019년 GSAP3가 업그레이드 되었습니다. 50가지 이상의 새로운 기능들이 생기고 기대되는 기능들이 많습니다.</p>
 <ul>
-    <li>Tweenlite : GSAP의 애니메이션 객체와 그 속성을 조절하는 코어 엔진입니다. 이 파일은 필수 객체만 포함하고 있는 경량화 파일이지만. 기본적인 애니메이션을 모두 처리할 수 있으며, 다른 특수한 기능을 추가로 로드해서 사용할 수도 있습니다.</li>
-    <li>TweenMax : Tweenlite가 반드시 필요한 기능만 묶은 경량화 코어 파일이라면, TweenMax는 TweenLite 기능은 물론이고, 애니메이션 작업에 필요한 대부분의 기능을 커버하는 다양한 플러그인도 다수 포함하고 있는 풀버전 파일입니다. 유료 기능은 포함하고 있지 않습니다.</li>
-    <li>TimelineLite : GSAP의 핵심 기능이라고 할 수 있으며, CSS가 오직 지연시간만을 이용해서 각 애니메이션의 타이밍을 결정한다고 하면, GSAP는 타임라인에 기초한 시퀀싱, 즉 순차재생이 가능하기 때문에 여러 애니메이션을 유기적으로 연결하거나 수정하기가 편리합니다.</li>
-    <li>TimeLineMax : TimelineLite의 확장된 파일이며, repeat, repeatDelay, yoyo 등의 부가기능이 포함되어 있습니다.</li>
+	<li>이전 버전의 TweenMax 보다 파일크기가 절반이상 줄고 더 많은 기능들이 생겼습니다.</li>
+	<li>모션 경로에 따라 애니메이션을 움직이는 새로운 플러그인이 생겼습니다.</li>
+	<li>TweenLite, TweenMax, TimelineLite, TimelineMax의 API가 gsap로 통합되었지만 기존의 코드와도 호환성이 유지됩니다.</li>
+	<li>Timeline의 기본값이 자식에게도 상속받습니다.</li>
+	<li>새로운 유틸 메서드가 15가지 생겼습니다.(interpolate(), random(), snap(), mapRange())</li>
+	<li>키프레임 기능이 추가되었습니다.</li>
+	<li>효과기능이 추가되었습니다.</li>
+	<li>ES6 모듈 형식을 반영하며 익스9 버전까지 호환성을 맞추었습니다.</li>
 </ul>
+
+
+
+
+<h4 class="pt50">GSAP 사용하기</h4>
+<div class="sample">
+    <h5>html<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html">
+        <pre class="line-numbers"><code class="language-markup">&lt;html lang="ko"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;GSAP&lt;/title&gt;
+
+		&lt;!-- CDN TweenMax --&gt;
+		&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+		
+		&lt;!-- CDN TweenLite, CSSPluginm, EasePack  --&gt;
+		&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.5/plugins/CSSPlugin.min.js"&gt;&lt;/script&gt;
+		&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.5/easing/EasePack.min.js"&gt;&lt;/script&gt;
+		&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.5/TweenLite.min.js"&gt;&lt;/script&gt;
+		
+		&lt;!-- local --&gt;
+		&lt;script src="js/TimelineLite.min.js"&gt;&lt;/script&gt;
+		&lt;script src="js/TimelineMax.min.js"&gt;&lt;/script&gt;
+		&lt;script src="js/TweenLite.min.js"&gt;&lt;/script&gt;
+		&lt;script src="js/TweenMax.min.js"&gt;&lt;/script&gt;
+		
+		&lt;!-- jquery + gsap --&gt;
+		&lt;script src="js/jquery.gsap.min.js"&gt;&lt;/script&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample -->

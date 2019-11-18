@@ -13,33 +13,34 @@
 
 
 <style>
-    .box {width: 100%;}
-    .box span {
-        display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
-        color: #fff; margin: 4px;
-        background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);}
+    .box_wrap {width: 100%;}
+    .box_wrap div {
+        display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+        border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+        background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+    }
 </style>
 
 
 <!-- Sample1 -->
-<h4 class="pt50">이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample661_1.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<h4 class="pt50">1. 이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample661_1.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
 <p>버튼을 클릭하면 오른쪽으로 이동하는 애니메이션입니다.</p>
 <div class="sample">
     <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
     <div class="ex">
         <!-- ex -->
-        <div class="box">
-            <span class="box1">box</span>
+        <div class="box_wrap w1">
+            <div class="box1">box</div>
         </div>
         <!-- ex -->
     </div>
     
-    <div class="choice">
+    <div class="choice c1">
         <a href="#" class="reset">리셋</a>
         <a href="#" class="start">클릭하면 오른쪽으로 움직입니다.</a>
     </div>
 </div>
-<!-- sample -->
+<!-- sample1 -->
 
 
 <div class="sample">
@@ -53,7 +54,7 @@ $(".reset").on("click", function(){
 });</code></pre>
     </div>
 </div>
-<!-- sample -->
+<!-- sample1 -->
 
 <div class="sample">
     <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
@@ -66,7 +67,7 @@ $(".reset").on("click",function(){
 });</code></pre>
     </div>
 </div>
-<!-- sample -->
+<!-- sample1 -->
 
 <div class="sample">
     <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
@@ -85,7 +86,7 @@ function moveReset(){
 }</code></pre>
     </div>
 </div>
-<!-- sample -->
+<!-- sample1 -->
 
 <div class="sample">
     <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
@@ -156,25 +157,343 @@ function moveReset(){
 &lt;/html&gt;</code></pre>
     </div>
 </div>
-<!-- sample -->
+<!-- sample1 -->
 
 
 <script>
-    $("a").on("click",function(e){
+    $(".choice a").on("click",function(e){
         e.preventDefault();
     });
 
-    const startBtn = document.querySelector('.start');
-    const resetBtn = document.querySelector('.reset');
-
-    startBtn.addEventListener('click', moveStart);
-    resetBtn.addEventListener('click', moveReset);
-    
-    function moveStart(){
-        TweenMax.to('.box1', 1, {left: "80%"});
-    }
-    function moveReset(){
-        TweenMax.to('.box1', 0, {left: "0%"});
-    }
+    $(".c1 .start").on("click",function(){
+        TweenMax.to(".w1 .box1", 1, { left:"80%" });
+    });  
+    $(".c1 .reset").on("click",function(){
+        TweenMax.to(".w1 .box1", 0, { left:"0%" });
+    });  
 </script>
 <!-- //Sample1 -->
+
+
+
+
+
+
+
+
+
+<!-- Sample2 -->
+<h4 class="pt50">2. 이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample661_2.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>버튼을 클릭하면 한꺼번에 오른쪽으로 이동하는 애니메이션입니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box_wrap w2">
+            <div class="box1">box</div>
+            <div class="box2">box</div>
+            <div class="box3">box</div>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice c2">
+        <a href="#" class="reset">리셋</a>
+        <a href="#" class="start">클릭하면 오른쪽으로 움직입니다.</a>
+    </div>
+</div>
+<!-- sample2 -->
+
+
+<div class="sample">
+    <h5>JQUERY<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".choice .start").on("click",function(){
+    $(".box1, .box2, .box3").animate({ left:"80%" }, 1000);
+}); 
+$(".choice .reset").on("click",function(){
+    $(".box1, .box2, .box3").animate({ left:"0%" }, 0);
+});</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+<div class="sample">
+    <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".choice .start").on("click",function(){
+    TweenMax.to([".box1, .box2, .box3"], 1, {left:"80%"});
+});  
+$(".choice .reset").on("click",function(){
+    TweenMax.to([".box1, .box2, .box3"], 0, {left:"0%"});
+});</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+<div class="sample">
+    <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-javascript">const startBtn = document.querySelector('.start');
+const resetBtn = document.querySelector('.reset');
+
+startBtn.addEventListener('click', moveStart);
+resetBtn.addEventListener('click', moveReset);
+
+function moveStart(){
+    TweenMax.to([".box1, .box2, .box3"], 1, {left: "80%"});
+}
+function moveReset(){
+    TweenMax.to([".box1, .box2, .box3"], 0, {left: "0%"});
+}</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+<div class="sample">
+    <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;GSAP&lt;/title&gt;
+    &lt;style&gt;
+        .box_wrap {width: 100%;}
+        .box_wrap div {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+            background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="box_wrap"&gt;
+        &lt;div class="box1"&gt;box&lt;/div&gt;
+        &lt;div class="box2"&gt;box&lt;/div&gt;
+        &lt;div class="box3"&gt;box&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="choice"&gt;
+        &lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
+        &lt;a href="#" class="start"&gt;클릭하면 이동합니다..&lt;/a&gt;
+    &lt;/div&gt;
+    
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $("a").on("click",function(e){
+            e.preventDefault();
+        });
+
+        //jquery
+        // $(".choice .start").on("click",function(){
+        //     $(".box1, .box2, .box3").animate({ left:"80%" }, 1000);
+        // }); 
+        // $(".choice .reset").on("click",function(){
+        //     $(".box1, .box2, .box3").animate({ left:"0%" }, 0);
+        // });
+
+        //gsap
+        // $(".choice .start").on("click",function(){
+        //     TweenMax.to([".box1, .box2, .box3"], 1, {left:"80%"});
+        // });  
+        // $(".choice .reset").on("click",function(){
+        //     TweenMax.to([".box1, .box2, .box3"], 0, {left:"0%"});
+        // });  
+    
+        //javascript
+        const startBtn = document.querySelector('.start');
+        const resetBtn = document.querySelector('.reset');
+
+        startBtn.addEventListener('click', moveStart);
+        resetBtn.addEventListener('click', moveReset);
+        
+        function moveStart(){
+            TweenMax.to([".box1, .box2, .box3"], 1, {left: "80%"});
+        }
+        function moveReset(){
+            TweenMax.to([".box1, .box2, .box3"], 0, {left: "0%"});
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+
+<script>
+    $(".choice a").on("click",function(e){
+        e.preventDefault();
+    });
+
+    $(".c2 .start").on("click",function(){
+        TweenMax.to([".w2 .box1, .w2 .box2, .w2 .box3"], 1, {left:"80%"});
+    });  
+    $(".c2 .reset").on("click",function(){
+        TweenMax.to([".w2 .box1, .w2 .box2, .w2 .box3"], 0, {left:"0%"});
+    });  
+</script>
+<!-- //Sample2 -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- Sample3 -->
+<h4 class="pt50">3. 이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample661_3.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>버튼을 클릭하면 오른쪽으로 한번씩 이동하는 애니메이션입니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box_wrap w3">
+            <div class="box1">box</div>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice c3">
+        <a href="#" class="reset">리셋</a>
+        <a href="#" class="start">클릭하면 오른쪽으로 움직입니다.</a>
+    </div>
+</div>
+<!-- sample3 -->
+
+
+<div class="sample">
+    <h5>JQUERY<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+    $(".box1").animate({ left:"+=100" }, 1000);
+}); 
+$(".reset").on("click",function(){
+    $(".box1").animate({ left:"0" }, 0);
+});</code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+<div class="sample">
+    <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+    TweenMax.to(".box1", 1, { left:"+=100" });
+});  
+$(".reset").on("click",function(){
+    TweenMax.to(".box1", 0, { left:"0" });
+});  </code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+<div class="sample">
+    <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-javascript">const startBtn = document.querySelector('.start');
+const resetBtn = document.querySelector('.reset');
+
+startBtn.addEventListener('click', moveStart);
+resetBtn.addEventListener('click', moveReset);
+
+function moveStart(){
+    TweenMax.to(".box1", 1, { left:"+=100" });
+}
+function moveReset(){
+    TweenMax.to(".box1", 0, { left:"0" });
+}</code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+<div class="sample">
+    <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;GSAP&lt;/title&gt;
+    &lt;style&gt;
+        .box_wrap {width: 100%;}
+        .box_wrap div {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+            background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="box_wrap"&gt;
+        &lt;div class="box1"&gt;box&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="choice"&gt;
+        &lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
+        &lt;a href="#" class="start"&gt;클릭하면 오른쪽으로 움직입니다.&lt;/a&gt;
+    &lt;/div&gt;
+    
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(".choice a").on("click",function(e){
+            e.preventDefault();
+        });
+
+        //jquery
+        // $(".start").on("click",function(){
+        //     $(".box1").animate({ left:"+=100" }, 1000);
+        // }); 
+        // $(".reset").on("click",function(){
+        //     $(".box1").animate({ left:"0" }, 0);
+        // });
+
+        //gsap
+        // $(".start").on("click",function(){
+        //     TweenMax.to(".box1", 1, { left:"+=100" });
+        // });  
+        // $(".reset").on("click",function(){
+        //     TweenMax.to(".box1", 0, { left:"0" });
+        // });  
+    
+        //javascript
+        const startBtn = document.querySelector('.start');
+        const resetBtn = document.querySelector('.reset');
+
+        startBtn.addEventListener('click', moveStart);
+        resetBtn.addEventListener('click', moveReset);
+        
+        function moveStart(){
+            TweenMax.to(".box1", 1, { left:"+=100" });
+        }
+        function moveReset(){
+            TweenMax.to(".box1", 0, { left:"0" });
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+
+<script>
+    $(".choice a").on("click",function(e){
+        e.preventDefault();
+    });
+
+    $(".c3 .start").on("click",function(){
+        TweenMax.to(".w3 .box1", 1, { left:"+=100" });
+    });  
+    $(".c3 .reset").on("click",function(){
+        TweenMax.to(".w3 .box1", 0, { left:"0" });
+    });  
+</script>
+<!-- //Sample3 -->

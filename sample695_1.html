@@ -30,22 +30,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script>
-        $("a").on("click",function(e){
+        $(".choice a").on("click",function(e){
             e.preventDefault();
         });
 
         //jquery
-        // $(".start").on("click",function(){
-        //     $(".box1")
-        //         .animate({ left: "80%" }, 1000)
-        //         .animate({ height: "300" }, 1000, 'easeOutQuad')
-        //         .animate({ opacity: "0.5" }, 1000)
-        //         .animate({ height: "60" }, 1000, 'easeInOutQuint')
-        //         .animate({ opacity: "1", left: "0" }, 1000);
-        // }); 
-        // $(".reset").on("click",function(){
-        //     $(".box1").animate({ left: "0"}, 0);
-        // });
 
         //gsap
 		// $(".start").on("click",function(){
@@ -59,7 +48,6 @@
         //     TweenMax.to([".box1, .box2, .box3, .box4"], 0, { left: "0" });
         // }); 
 
-    
         //javascript
         const startBtn = document.querySelector('.start');
         const resetBtn = document.querySelector('.reset');

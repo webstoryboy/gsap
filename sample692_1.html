@@ -20,52 +20,55 @@
 
     <div class="choice">
         <a href="#" class="reset">리셋</a>
-        <a href="#" class="start">클릭하면 이징 효과에 따라 이동합니다.</a>
+        <a href="#" class="start">클릭하면 이동한 후 콜백함수를 호출합니다.</a>
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script>
-        $("a").on("click",function(e){
+        $(".choice a").on("click",function(e){
             e.preventDefault();
         });
 
         //jquery
-        $(".choice .start").on("click",function(){
+        $(".start").on("click",function(){
             $(".box1").animate({left:"90%"}, 1000, function(){
                 alert("제이쿼리 콜백함수 도착");
             });
         }); 
-        $(".choice .reset").on("click",function(){
+        $(".reset").on("click",function(){
             $(".box1").animate({ left: "0"}, 0);
         });
 
         //gsap
-        // $(".choice .start").on("click",function(){
-        //     TweenMax.to(".box1",1, { left:"90%", onComplete:tweenComplete });
-        // });  
-        // $(".choice .reset").on("click",function(){
-        //     TweenMax.to(".box1", 0, { left: "0" });
-        // });  
+        $(".start").on("click",function(){
+            TweenMax.to(".box1", 1, { left:"80%", onComplete:tweenComplete });
+        });  
+        $(".reset").on("click",function(){
+            TweenMax.to(".box1", 0, { left: "0" });
+        });  
 
-        // function tweenComplete(){
-        //     alert("TweenMax 콜백함수 도착");
-        // }
+        function tweenComplete(){
+            alert("TweenMax 콜백함수 도착");
+        }
     
         //javascript
-        // const startBtn = document.querySelector('.start');
-        // const resetBtn = document.querySelector('.reset');
+        const startBtn = document.querySelector('.start');
+        const resetBtn = document.querySelector('.reset');
 
-        // startBtn.addEventListener('click', moveStart);
-        // resetBtn.addEventListener('click', moveReset);
+        startBtn.addEventListener('click', moveStart);
+        resetBtn.addEventListener('click', moveReset);
         
-        // function moveStart(){
-        //     TweenMax.to(".box1",1, { left:"90%", onComplete:tweenComplete });
-        // }
-        // function moveReset(){
-        //     TweenMax.to(".box1", 0, { left: "0" });
-        // }
+        function moveStart(){
+            TweenMax.to(".box1", 1, { left:"80%", onComplete:tweenComplete });
+        }
+        function moveReset(){
+            TweenMax.to(".box1", 0, { left: "0" });
+        }
+        function tweenComplete(){
+            alert("TweenMax 콜백함수 도착");
+        }
     </script>
 </body>
 </html>

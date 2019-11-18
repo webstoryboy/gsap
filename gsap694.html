@@ -1,0 +1,734 @@
+
+<h2>Timelile</h2>
+<p>애니메이션을 순차적으로 적용합니다.</p>
+
+<hr>
+
+<h3>Timelile</h3>
+<p>애니메이션을 순차적으로 적용합니다.</p>
+
+<h4 class="pt50">문법(Syntax)</h4>
+<p class="blue">
+    TweenMax.to("target", duration, vars);
+</p>
+
+
+<style>
+    .box_wrap {width: 100%;}
+    .box_wrap div {
+        display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+        border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
+        color: #fff; margin: 4px;
+        background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+    }
+</style>
+
+
+<!-- Sample1 -->
+<h4 class="pt50">이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample694_1.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>애니메이션을 순차적으로 적용합니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box_wrap w1">
+            <div class="box1">box</div>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice c1">
+        <a href="#" class="reset">리셋</a>
+        <a href="#" class="start">클릭하면 이동합니다.</a>
+    </div>
+</div>
+<!-- sample -->
+
+
+<div class="sample">
+    <h5>JQUERY<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+    $(".box1")
+        .animate({ left: "80%" }, 1000)
+        .animate({ height: "300" }, 1000, 'easeOutQuad')
+        .animate({ opacity: "0.5" }, 1000)
+        .animate({ height: "60" }, 1000, 'easeInOutQuint')
+        .animate({ opacity: "1", left: "0" }, 1000);
+}); 
+$(".reset").on("click",function(){
+    $(".box1").animate({ left: "0"}, 0);
+});</code></pre>
+    </div>
+</div>
+<!-- sample -->
+
+<div class="sample">
+    <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+    var tl = new TimelineLite();
+    tl.to(".box1", 1, {left: "80%"});
+    tl.to(".box1", 1, {height: 300, ease:Elastic.easeOut});
+    tl.to(".box1", 1, {opacity:0.5});
+    tl.to(".box1", 1, {height: 60, ease:Elastic.easeOut});
+    tl.to(".box1", 1, {opacity:1, left:"0"});
+});
+
+$(".choice .reset").on("click",function(){
+    TweenMax.to(".box1", 0, { left: "0" });
+}); </code></pre>
+    </div>
+</div>
+<!-- sample -->
+
+<div class="sample">
+    <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-javascript">const startBtn = document.querySelector('.start');
+const resetBtn = document.querySelector('.reset');
+
+startBtn.addEventListener('click', moveStart);
+resetBtn.addEventListener('click', moveReset);
+
+function moveStart(){
+    var tl = new TimelineLite();
+    tl.to(".box1", 1, {left: "80%"});
+    tl.to(".box1", 1, {height: 300, ease:Elastic.easeOut});
+    tl.to(".box1", 1, {opacity:0.5});
+    tl.to(".box1", 1, {height: 60, ease:Elastic.easeOut});
+    tl.to(".box1", 1, {opacity:1, left:"0"});
+}
+function moveReset(){
+    TweenMax.to(".box1", 0, { left: "0" });
+}</code></pre>
+    </div>
+</div>
+<!-- sample -->
+
+<div class="sample">
+    <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;GSAP timeline1&lt;/title&gt;
+    &lt;style&gt;
+        .box_wrap {width: 100%;}
+        .box_wrap div {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
+            color: #fff; margin: 4px;
+            background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="box_wrap"&gt;
+        &lt;div class="box1"&gt;box&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="choice"&gt;
+        &lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
+        &lt;a href="#" class="start"&gt;클릭하면 이동합니다.&lt;/a&gt;
+    &lt;/div&gt;
+    
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(".choice a").on("click",function(e){
+            e.preventDefault();
+        });
+
+        //jquery
+        // $(".start").on("click",function(){
+        //     $(".box1")
+        //         .animate({ left: "80%" }, 1000)
+        //         .animate({ height: "300" }, 1000, 'easeOutQuad')
+        //         .animate({ opacity: "0.5" }, 1000)
+        //         .animate({ height: "60" }, 1000, 'easeInOutQuint')
+        //         .animate({ opacity: "1", left: "0" }, 1000);
+        // }); 
+        // $(".reset").on("click",function(){
+        //     $(".box1").animate({ left: "0"}, 0);
+        // });
+
+        //gsap
+        // $(".start").on("click",function(){
+        //     var tl = new TimelineLite();
+        //     tl.to(".box1", 1, {left: "80%"});
+        //     tl.to(".box1", 1, {height: 300, ease:Elastic.easeOut});
+        //     tl.to(".box1", 1, {opacity:0.5});
+        //     tl.to(".box1", 1, {height: 60, ease:Elastic.easeOut});
+        //     tl.to(".box1", 1, {opacity:1, left:"0"});
+        // });
+
+        // $(".choice .reset").on("click",function(){
+        //     TweenMax.to(".box1", 0, { left: "0" });
+        // }); 
+
+        //javascript
+        const startBtn = document.querySelector('.start');
+        const resetBtn = document.querySelector('.reset');
+
+        startBtn.addEventListener('click', moveStart);
+        resetBtn.addEventListener('click', moveReset);
+        
+        function moveStart(){
+            var tl = new TimelineLite();
+            tl.to(".box1", 1, {left: "80%"});
+            tl.to(".box1", 1, {height: 300, ease:Elastic.easeOut});
+            tl.to(".box1", 1, {opacity:0.5});
+            tl.to(".box1", 1, {height: 60, ease:Elastic.easeOut});
+            tl.to(".box1", 1, {opacity:1, left:"0"});
+        }
+        function moveReset(){
+            TweenMax.to(".box1", 0, { left: "0" });
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample -->
+
+
+<script>
+    $(".choice a").on("click",function(e){
+        e.preventDefault();
+    });
+
+    const startBtn = document.querySelector('.c1 .start');
+    const resetBtn = document.querySelector('.c1 .reset');
+
+    startBtn.addEventListener('click', moveStart);
+    resetBtn.addEventListener('click', moveReset);
+    
+    function moveStart(){
+        var tl = new TimelineLite();
+        tl.to(".w1 .box1", 1, {left: "80%"});
+        tl.to(".w1 .box1", 1, {height: 300, ease:Elastic.easeOut});
+        tl.to(".w1 .box1", 1, {opacity:0.5});
+        tl.to(".w1 .box1", 1, {height: 60, ease:Elastic.easeOut});
+        tl.to(".w1 .box1", 1, {opacity:1, left:"0"});
+    }
+    function moveReset(){
+        TweenMax.to(".w1 .box1", 0, { left: "0" });
+    }
+</script>
+<!-- //Sample1 -->
+
+
+
+
+
+
+
+
+
+<!-- Sample2 -->
+<h4 class="pt50">2. 이동하기 <span><a href="https://webstoryboy.github.io/gsap/sample694_2.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>애니메이션을 순차적으로 적용합니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box_wrap w2">
+            <div class="box1">box</div>
+            <div class="box2">box</div>
+            <div class="box3">box</div>
+            <div class="box4">box</div>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice c2">
+        <a href="#" class="reset">리셋</a>
+        <a href="#" class="start1">클릭하면 이동합니다.</a>
+        <a href="#" class="start2">클릭하면(+2) 이동합니다.</a>
+        <a href="#" class="start3">클릭하면(-1) 이동합니다.</a>
+        <a href="#" class="start4">클릭하면(1) 이동합니다.</a>
+    </div>
+</div>
+<!-- sample2 -->
+
+
+<div class="sample">
+    <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start1").on("click",function(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 1, x: 300 })
+      .to(".box2", {duration: 1, x: 300 })
+      .to(".box3", {duration: 1, x: 300 })
+      .to(".box4", {duration: 1, x: 300 })
+});
+$(".start2").on("click",function(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 1, x: 300 })
+      .to(".box2", {duration: 1, x: 300 })
+      .to(".box3", {duration: 1, x: 300 }, "+=2")
+      .to(".box4", {duration: 1, x: 300 }, "+=2")
+});
+$(".start3").on("click",function(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 2, x: 300 })
+      .to(".box2", {duration: 2, x: 300 })
+      .to(".box3", {duration: 2, x: 300 }, "-=1")
+      .to(".box4", {duration: 2, x: 300 }, "-=1")
+});
+$(".start4").on("click",function(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 2, x: 300 })
+      .to(".box2", {duration: 2, x: 300 })
+      .to(".box3", {duration: 2, x: 300 }, 4)
+      .to(".box4", {duration: 2, x: 300 }, 4)
+});
+
+$(".reset").on("click",function(){
+    TweenMax.to([".box1, .box2, .box3, .box4"], {duration: 0, x: 0 });
+});</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+<div class="sample">
+    <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-javascript">const resetBtn = document.querySelector('.reset');
+const startBtn1 = document.querySelector('.start1');
+const startBtn2 = document.querySelector('.start2');
+const startBtn3 = document.querySelector('.start3');
+const startBtn4 = document.querySelector('.start4');
+
+resetBtn.addEventListener('click', moveReset);
+startBtn1.addEventListener('click', moveStart1);
+startBtn2.addEventListener('click', moveStart2);
+startBtn3.addEventListener('click', moveStart3);
+startBtn4.addEventListener('click', moveStart4);
+
+function moveStart1(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 1, x: 300 })
+        .to(".box2", {duration: 1, x: 300 })
+        .to(".box3", {duration: 1, x: 300 })
+        .to(".box4", {duration: 1, x: 300 });
+}
+function moveStart2(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 1, x: 300 })
+        .to(".box2", {duration: 1, x: 300 })
+        .to(".box3", {duration: 1, x: 300 }, "+=2")
+        .to(".box4", {duration: 1, x: 300 }, "+=2");
+}
+function moveStart3(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 2, x: 300 })
+        .to(".box2", {duration: 2, x: 300 })
+        .to(".box3", {duration: 2, x: 300 }, "-=1")
+        .to(".box4", {duration: 2, x: 300 }, "-=1");
+}
+function moveStart4(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 2, x: 300 })
+        .to(".box2", {duration: 2, x: 300 })
+        .to(".box3", {duration: 2, x: 300 }, 4)
+        .to(".box4", {duration: 2, x: 300 }, 4);
+}
+
+function moveReset(){
+    TweenMax.to([".box1, .box2, .box3, .box4"], {duration: 0, x: 0 });
+}</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+<div class="sample">
+    <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;GSAP timeline1&lt;/title&gt;
+    &lt;style&gt;
+        .box_wrap {width: 100%;}
+        .box_wrap div {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+            background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="box_wrap"&gt;
+        &lt;div class="box1"&gt;box&lt;/div&gt;
+        &lt;div class="box2"&gt;box&lt;/div&gt;
+        &lt;div class="box3"&gt;box&lt;/div&gt;
+        &lt;div class="box4"&gt;box&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="choice"&gt;
+        &lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
+        &lt;a href="#" class="start1"&gt;클릭하면 이동합니다.&lt;/a&gt;
+        &lt;a href="#" class="start2"&gt;클릭하면(+2) 이동합니다.&lt;/a&gt;
+        &lt;a href="#" class="start3"&gt;클릭하면(-1) 이동합니다.&lt;/a&gt;
+        &lt;a href="#" class="start4"&gt;클릭하면(1) 이동합니다.&lt;/a&gt;
+    &lt;/div&gt;
+    
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/gsap@3.0.1/dist/gsap.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(".choice a").on("click",function(e){
+            e.preventDefault();
+        });
+
+        //gsap
+        // $(".start1").on("click",function(){
+        //     var tl = gsap.timeline();
+        //     tl.to(".box1", {duration: 1, x: 300 })
+        //       .to(".box2", {duration: 1, x: 300 })
+        //       .to(".box3", {duration: 1, x: 300 })
+        //       .to(".box4", {duration: 1, x: 300 })
+        // });
+        // $(".start2").on("click",function(){
+        //     var tl = gsap.timeline();
+        //     tl.to(".box1", {duration: 1, x: 300 })
+        //       .to(".box2", {duration: 1, x: 300 })
+        //       .to(".box3", {duration: 1, x: 300 }, "+=2")
+        //       .to(".box4", {duration: 1, x: 300 }, "+=2")
+        // });
+        // $(".start3").on("click",function(){
+        //     var tl = gsap.timeline();
+        //     tl.to(".box1", {duration: 2, x: 300 })
+        //       .to(".box2", {duration: 2, x: 300 })
+        //       .to(".box3", {duration: 2, x: 300 }, "-=1")
+        //       .to(".box4", {duration: 2, x: 300 }, "-=1")
+        // });
+        // $(".start4").on("click",function(){
+        //     var tl = gsap.timeline();
+        //     tl.to(".box1", {duration: 2, x: 300 })
+        //       .to(".box2", {duration: 2, x: 300 })
+        //       .to(".box3", {duration: 2, x: 300 }, 4)
+        //       .to(".box4", {duration: 2, x: 300 }, 4)
+        // });
+
+        // $(".reset").on("click",function(){
+        //     TweenMax.to([".box1, .box2, .box3, .box4"], {duration: 0, x: 0 });
+        // }); 
+
+        //javascript
+        const resetBtn = document.querySelector('.reset');
+        const startBtn1 = document.querySelector('.start1');
+        const startBtn2 = document.querySelector('.start2');
+        const startBtn3 = document.querySelector('.start3');
+        const startBtn4 = document.querySelector('.start4');
+
+        resetBtn.addEventListener('click', moveReset);
+        startBtn1.addEventListener('click', moveStart1);
+        startBtn2.addEventListener('click', moveStart2);
+        startBtn3.addEventListener('click', moveStart3);
+        startBtn4.addEventListener('click', moveStart4);
+        
+        function moveStart1(){
+            var tl = gsap.timeline();
+            tl.to(".box1", {duration: 1, x: 300 })
+                .to(".box2", {duration: 1, x: 300 })
+                .to(".box3", {duration: 1, x: 300 })
+                .to(".box4", {duration: 1, x: 300 });
+        }
+        function moveStart2(){
+            var tl = gsap.timeline();
+            tl.to(".box1", {duration: 1, x: 300 })
+                .to(".box2", {duration: 1, x: 300 })
+                .to(".box3", {duration: 1, x: 300 }, "+=2")
+                .to(".box4", {duration: 1, x: 300 }, "+=2");
+        }
+        function moveStart3(){
+            var tl = gsap.timeline();
+            tl.to(".box1", {duration: 2, x: 300 })
+                .to(".box2", {duration: 2, x: 300 })
+                .to(".box3", {duration: 2, x: 300 }, "-=1")
+                .to(".box4", {duration: 2, x: 300 }, "-=1");
+        }
+        function moveStart4(){
+            var tl = gsap.timeline();
+            tl.to(".box1", {duration: 2, x: 300 })
+                .to(".box2", {duration: 2, x: 300 })
+                .to(".box3", {duration: 2, x: 300 }, 4)
+                .to(".box4", {duration: 2, x: 300 }, 4);
+        }
+
+        function moveReset(){
+            TweenMax.to([".box1, .box2, .box3, .box4"], {duration: 0, x: 0 });
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+
+<script>
+    $(".c2 a").on("click",function(e){
+        e.preventDefault();
+    });
+
+    
+    $(".c2 .start1").on("click",function(){
+        var tl = gsap.timeline();
+        tl.to(".w2 .box1", {duration: 1, x: 300 })
+            .to(".w2 .box2", {duration: 1, x: 300 })
+            .to(".w2 .box3", {duration: 1, x: 300 })
+            .to(".w2 .box4", {duration: 1, x: 300 })
+    });
+    $(".c2 .start2").on("click",function(){
+        var tl = gsap.timeline();
+        tl.to(".w2 .box1", {duration: 1, x: 300 })
+            .to(".w2 .box2", {duration: 1, x: 300 })
+            .to(".w2 .box3", {duration: 1, x: 300 }, "+=2")
+            .to(".w2 .box4", {duration: 1, x: 300 }, "+=2")
+    });
+    $(".c2 .start3").on("click",function(){
+        var tl = gsap.timeline();
+        tl.to(".w2 .box1", {duration: 2, x: 300 })
+            .to(".w2 .box2", {duration: 2, x: 300 })
+            .to(".w2 .box3", {duration: 2, x: 300 }, "-=1")
+            .to(".w2 .box4", {duration: 2, x: 300 }, "-=1")
+    });
+    $(".c2 .start4").on("click",function(){
+        var tl = gsap.timeline();
+        tl.to(".w2 .box1", {duration: 2, x: 300 })
+            .to(".w2 .box2", {duration: 2, x: 300 })
+            .to(".w2 .box3", {duration: 2, x: 300 }, 4)
+            .to(".w2 .box4", {duration: 2, x: 300 }, 4)
+    });
+
+    $(".c2 .reset").on("click",function(){
+        TweenMax.to([".w2 .box1, .w2 .box2, .w2 .box3, .w2 .box4"], {duration: 0, x: 0 });
+    }); 
+</script>
+<!-- //Sample2 -->
+
+
+
+
+
+
+
+<!-- Sample3 -->
+<h4 class="pt50">3. 이동하기(.add) <span><a href="https://webstoryboy.github.io/gsap/sample694_3.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>애니메이션을 순차적으로 적용합니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box_wrap w3">
+            <div class="box1">box</div>
+            <div class="box2">box</div>
+            <div class="box3">box</div>
+            <div class="box4">box</div>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice c3">
+        <a href="#" class="reset">리셋</a>
+        <a href="#" class="start1">클릭하면 이동합니다.</a>
+        <a href="#" class="start2">클릭하면 이동합니다.</a>
+    </div>
+</div>
+<!-- sample3 -->
+
+
+<div class="sample">
+    <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start1").on("click",function(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 1, x: 300 })
+      .add("plus", "+=1")
+      .to(".box2", {duration: 1, x: 300 }, "plus")
+      .to(".box3", {duration: 1, x: 300 }, "plus")
+      .to(".box4", {duration: 1, x: 300 }, "plus");
+});
+
+$(".start2").on("click",function(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 1, x: 300 })
+      .add("plus", "+=1")
+      .to(".box2", {duration: 1, x: 300 }, "plus")
+      .to(".box3", {duration: 1, x: 300 }, "plus")
+      .to(".box4", {duration: 1, x: 300 }, "plus+=0.5")
+});
+
+$(".reset").on("click",function(){
+    TweenMax.to([".box1, .box2, .box3, .box4"], {duration: 0, x: 0 });
+}); </code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+<div class="sample">
+    <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-javascript">const resetBtn = document.querySelector('.reset');
+const startBtn1 = document.querySelector('.start1');
+const startBtn2 = document.querySelector('.start2');
+
+resetBtn.addEventListener('click', moveReset);
+startBtn1.addEventListener('click', moveStart1);
+startBtn2.addEventListener('click', moveStart2);
+
+function moveStart1(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 1, x: 300 })
+        .add("plus", "+=1")
+        .to(".box2", {duration: 1, x: 300 }, "plus")
+        .to(".box3", {duration: 1, x: 300 }, "plus")
+        .to(".box4", {duration: 1, x: 300 }, "plus");
+}
+function moveStart2(){
+    var tl = gsap.timeline();
+    tl.to(".box1", {duration: 1, x: 300 })
+        .add("plus", "+=1")
+        .to(".box2", {duration: 1, x: 300 }, "plus")
+        .to(".box3", {duration: 1, x: 300 }, "plus")
+        .to(".box4", {duration: 1, x: 300 }, "plus+=0.5");
+}
+function moveReset(){
+    TweenMax.to([".box1, .box2, .box3, .box4"], {duration: 0, x: 0 });
+}</code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+<div class="sample">
+    <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;GSAP timeline1&lt;/title&gt;
+    &lt;style&gt;
+        .box_wrap {width: 100%;}
+        .box_wrap div {
+            display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+            background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="box_wrap"&gt;
+        &lt;div class="box1"&gt;box&lt;/div&gt;
+        &lt;div class="box2"&gt;box&lt;/div&gt;
+        &lt;div class="box3"&gt;box&lt;/div&gt;
+        &lt;div class="box4"&gt;box&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="choice"&gt;
+        &lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
+        &lt;a href="#" class="start1"&gt;클릭하면 이동합니다.&lt;/a&gt;
+        &lt;a href="#" class="start2"&gt;클릭하면 이동합니다.&lt;/a&gt;
+    &lt;/div&gt;
+    
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/gsap@3.0.1/dist/gsap.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(".choice a").on("click",function(e){
+            e.preventDefault();
+        });
+
+        //gsap
+        // $(".start1").on("click",function(){
+        //     var tl = gsap.timeline();
+        //     tl.to(".box1", {duration: 1, x: 300 })
+        //       .add("plus", "+=1")
+        //       .to(".box2", {duration: 1, x: 300 }, "plus")
+        //       .to(".box3", {duration: 1, x: 300 }, "plus")
+        //       .to(".box4", {duration: 1, x: 300 }, "plus");
+        // });
+
+        // $(".start2").on("click",function(){
+        //     var tl = gsap.timeline();
+        //     tl.to(".box1", {duration: 1, x: 300 })
+        //       .add("plus", "+=1")
+        //       .to(".box2", {duration: 1, x: 300 }, "plus")
+        //       .to(".box3", {duration: 1, x: 300 }, "plus")
+        //       .to(".box4", {duration: 1, x: 300 }, "plus+=0.5")
+        // });
+        
+        // $(".reset").on("click",function(){
+        //     TweenMax.to([".box1, .box2, .box3, .box4"], {duration: 0, x: 0 });
+        // }); 
+
+        //javascript
+        const resetBtn = document.querySelector('.reset');
+        const startBtn1 = document.querySelector('.start1');
+        const startBtn2 = document.querySelector('.start2');
+        
+        resetBtn.addEventListener('click', moveReset);
+        startBtn1.addEventListener('click', moveStart1);
+        startBtn2.addEventListener('click', moveStart2);
+        
+        function moveStart1(){
+            var tl = gsap.timeline();
+            tl.to(".box1", {duration: 1, x: 300 })
+                .add("plus", "+=1")
+                .to(".box2", {duration: 1, x: 300 }, "plus")
+                .to(".box3", {duration: 1, x: 300 }, "plus")
+                .to(".box4", {duration: 1, x: 300 }, "plus");
+        }
+        function moveStart2(){
+            var tl = gsap.timeline();
+            tl.to(".box1", {duration: 1, x: 300 })
+                .add("plus", "+=1")
+                .to(".box2", {duration: 1, x: 300 }, "plus")
+                .to(".box3", {duration: 1, x: 300 }, "plus")
+                .to(".box4", {duration: 1, x: 300 }, "plus+=0.5");
+        }
+        function moveReset(){
+            TweenMax.to([".box1, .box2, .box3, .box4"], {duration: 0, x: 0 });
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+
+<script>
+    $(".c3 a").on("click",function(e){
+        e.preventDefault();
+    });
+
+    
+    $(".c3 .start1").on("click",function(){
+        var tl = gsap.timeline();
+        tl.to(".w3 .box1", {duration: 1, x: 300 })
+            .add("plus", "+=1")
+            .to(".w3 .box2", {duration: 1, x: 300 }, "plus")
+            .to(".w3 .box3", {duration: 1, x: 300 }, "plus")
+            .to(".w3 .box4", {duration: 1, x: 300 }, "plus");
+    });
+
+    $(".c3 .start2").on("click",function(){
+        var tl = gsap.timeline();
+        tl.to(".w3 .box1", {duration: 1, x: 300 })
+            .add("plus", "+=1")
+            .to(".w3 .box2", {duration: 1, x: 300 }, "plus")
+            .to(".w3 .box3", {duration: 1, x: 300 }, "plus")
+            .to(".w3 .box4", {duration: 1, x: 300 }, "plus+=0.5")
+    });
+    
+    $(".c3 .reset").on("click",function(){
+        TweenMax.to([".w3 .box1, .w3 .box2, .w3 .box3, .w3 .box4"], {duration: 0, x: 0 });
+    }); 
+</script>
+<!-- //Sample3 -->

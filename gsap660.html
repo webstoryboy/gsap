@@ -1,38 +1,725 @@
-<h2>GSAP 사용하기</h2>
-<p>GSAP 사용하기 위해서 라이브러리 파일을 연동합니다.</p>
+<h2>Transform</h2>
+<p>Transform을 이용한 애니메이션입니다.</p>
 
 <hr>
 
-<h3>GSAP 사용하기</h3>
-<div class="sample">
-    <h5>html<span class="dot"><i></i><i></i><i></i></span></h5>
-    <div class="html">
-        <pre class="line-numbers"><code class="language-markup">&lt;html lang="ko"&gt;
-	&lt;head&gt;
-		&lt;meta charset="UTF-8"&gt;
-		&lt;title&gt;GSAP&lt;/title&gt;
+<h3>Transform</h3>
+<p>Transform을 이용한 애니메이션입니다.</p>
 
-		&lt;!-- CDN TweenMax --&gt;
-		&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+<h4 class="pt50">문법(Syntax)</h4>
+<p class="blue">
+    TweenMax.to("target", duration, vars);
+</p>
+
+<style>
+    .box_wrap {width: 100%;}
+    .box_wrap div {
+        display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+        border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+        background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+    }
+</style>
+
+
+<!-- Sample1 -->
+<h4 class="pt50">1. Scale <span><a href="https://webstoryboy.github.io/gsap/sample660_1.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>버튼을 클릭하면 스케일이 커지는 애니메이션입니다. 제이쿼리는 animate에서 scale이 작동하지 않고 CSS에서만 작동합니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box_wrap w1">
+            <div class="box1">box</div>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice c1">
+        <a href="#" class="reset">리셋</a>
+        <a href="#" class="startJ">[jQuery] 클릭하면 오른쪽으로 이동합니다.</a>
+        <a href="#" class="start">[GSAP] 클릭하면 오른쪽으로 이동합니다.</a>
+    </div>
+</div>
+<!-- sample1 -->
+
+
+<div class="sample">
+    <h5>JQUERY<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+	$(".box1").animate({ left: "80%" }, 1000);
+	$(".box1").css({ transform: "scale(3)" });
+}); 
+$(".reset").on("click",function(){
+	$(".box1").animate({ left: "0" }, 0);
+	$(".box1").css({ transform: "scale(1)" });
+});</code></pre>
+    </div>
+</div>
+<!-- sample1 -->
+
+<div class="sample">
+    <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+	TweenMax.to(".box1", 1, { left:"90%", scale:"3" });
+});  
+$(".reset").on("click",function(){
+	TweenMax.to(".box1", 0, { left: "0", scale:"1" });
+});  </code></pre>
+    </div>
+</div>
+<!-- sample1 -->
+
+<div class="sample">
+    <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-javascript">const startBtn = document.querySelector('.start');
+const resetBtn = document.querySelector('.reset');
+
+startBtn.addEventListener('click', moveStart);
+resetBtn.addEventListener('click', moveReset);
+
+function moveStart(){
+	TweenMax.to(".box1", 1, { left:"90%", scale:"3" });
+}
+function moveReset(){
+	TweenMax.to(".box1", 0, { left: "0", scale:"1" });
+}</code></pre>
+    </div>
+</div>
+<!-- sample1 -->
+
+<div class="sample">
+    <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;GSAP&lt;/title&gt;
+	&lt;style&gt;
+		.box_wrap {width: 100%;}
+		.box_wrap div {
+			display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+			border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+			background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div class="box_wrap"&gt;
+		&lt;div class="box1"&gt;box&lt;/div&gt;
+	&lt;/div&gt;
+
+	&lt;div class="choice"&gt;
+		&lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
+		&lt;a href="#" class="start"&gt;클릭하면 오른쪽으로 이동합니다.&lt;/a&gt;
+	&lt;/div&gt;
+	
+	&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+	&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+	&lt;script&gt;
+		$(".choice a").on("click",function(e){
+			e.preventDefault();
+		});
+
+		//jquery
+		// $(".start").on("click",function(){
+		//     $(".box1").animate({ left: "80%" }, 1000);
+		//     $(".box1").css({ transform: "scale(3)" });
+		// }); 
+		// $(".reset").on("click",function(){
+		//     $(".box1").animate({ left: "0" }, 0);
+		//     $(".box1").css({ transform: "scale(1)" });
+		});
+
+		//gsap
+		// $(".start").on("click",function(){
+		//     TweenMax.to(".box1", 1, { left:"90%", scale:"3" });
+		// });  
+		// $(".reset").on("click",function(){
+		//     TweenMax.to(".box1", 0, { left: "0", scale:"1" });
+		// });  
+	
+		//javascript
+		const startBtn = document.querySelector('.start');
+		const resetBtn = document.querySelector('.reset');
+
+		startBtn.addEventListener('click', moveStart);
+		resetBtn.addEventListener('click', moveReset);
 		
-		&lt;!-- CDN TweenLite, CSSPluginm, EasePack  --&gt;
-		&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.5/plugins/CSSPlugin.min.js"&gt;&lt;/script&gt;
-		&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.5/easing/EasePack.min.js"&gt;&lt;/script&gt;
-		&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.5/TweenLite.min.js"&gt;&lt;/script&gt;
-		
-		&lt;!-- local --&gt;
-		&lt;script src="js/TimelineLite.min.js"&gt;&lt;/script&gt;
-		&lt;script src="js/TimelineMax.min.js"&gt;&lt;/script&gt;
-		&lt;script src="js/TweenLite.min.js"&gt;&lt;/script&gt;
-		&lt;script src="js/TweenMax.min.js"&gt;&lt;/script&gt;
-		
-		&lt;!-- jquery + gsap --&gt;
-		&lt;script src="js/jquery.gsap.min.js"&gt;&lt;/script&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		
-	&lt;/body&gt;
+		function moveStart(){
+			TweenMax.to(".box1", 1, { left:"90%", scale:"3" });
+		}
+		function moveReset(){
+			TweenMax.to(".box1", 0, { left: "0", scale:"1" });
+		}
+	&lt;/script&gt;
+&lt;/body&gt;
 &lt;/html&gt;</code></pre>
     </div>
 </div>
-<!-- sample -->
+<!-- sample1 -->
+
+
+<script>
+    $(".choice a").on("click",function(e){
+        e.preventDefault();
+    });
+	$(".c1 .startJ").on("click",function(){
+		$(".w1 .box1").animate({ left: "80%" }, 1000);
+		$(".w1 .box1").css({ transform: "scale(3)" });
+	}); 
+    $(".c1 .start").on("click",function(){
+		TweenMax.to(".w1 .box1", 1, { left:"90%", scale:"3" });
+	});  
+	$(".c1 .reset").on("click",function(){
+		TweenMax.to(".w1 .box1", 0, { left: "0", scale:"1" });
+	});   
+</script>
+<!-- //Sample1 -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Sample2 -->
+<h4 class="pt50">2. Border-radius <span><a href="https://webstoryboy.github.io/gsap/sample660_2.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>버튼을 클릭하면 스케일이 커지는 애니메이션입니다. 제이쿼리는 animate에서 Border-radius이 작동합니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box_wrap w2">
+            <div class="box1">box</div>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice c2">
+		<a href="#" class="reset">리셋</a>
+		<a href="#" class="startJ">[jQuery] 클릭하면 테두리 굴곡이 변경됩니다.</a>
+		<a href="#" class="start">[GSAP] 클릭하면 테두리 굴곡이 변경됩니다.</a>
+    </div>
+</div>
+<!-- sample2 -->
+
+
+<div class="sample">
+    <h5>JQUERY<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".startJ").on("click",function(){
+	$(".box1").animate({ left: "80%", borderRadius: "0%" }, 2000);
+}); 
+$(".reset").on("click",function(){
+	$(".box1").animate({ left: "0", borderRadius: "50%" }, 0);
+});</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+<div class="sample">
+    <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+	TweenMax.to(".box1", 2, { left: "80%", borderRadius: "0%" });
+});  
+$(".reset").on("click",function(){
+	TweenMax.to(".box1", 0, { left: "0", borderRadius: "50%" });
+}); </code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+<div class="sample">
+    <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-javascript">const startBtn = document.querySelector('.start');
+const resetBtn = document.querySelector('.reset');
+
+startBtn.addEventListener('click', moveStart);
+resetBtn.addEventListener('click', moveReset);
+
+function moveStart(){
+	TweenMax.to(".box1", 2, { left: "80%", borderRadius: "0%" });
+}
+function moveReset(){
+	TweenMax.to(".box1", 0, { left: "0", borderRadius: "50%" });
+}</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+<div class="sample">
+    <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;GSAP&lt;/title&gt;
+	&lt;style&gt;
+		.box_wrap {width: 100%;}
+		.box_wrap div {
+			display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+			border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+			background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div class="box_wrap"&gt;
+		&lt;div class="box1"&gt;box&lt;/div&gt;
+	&lt;/div&gt;
+
+	&lt;div class="choice"&gt;
+		&lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
+		&lt;a href="#" class="startJ"&gt;[jQuery] 클릭하면 테두리 굴곡이 변경됩니다.&lt;/a&gt;
+		&lt;a href="#" class="start"&gt;[GSAP] 클릭하면 테두리 굴곡이 변경됩니다.&lt;/a&gt;
+	&lt;/div&gt;
+	
+	&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+	&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+	&lt;script&gt;
+		$("a").on("click",function(e){
+			e.preventDefault();
+		});
+
+		//jquery
+		$(".startJ").on("click",function(){
+			$(".box1").animate({ left: "80%", borderRadius: "0%" }, 2000);
+		}); 
+		// $(".reset").on("click",function(){
+		//     $(".box1").animate({ left: "0", borderRadius: "50%" }, 0);
+		// });
+
+		//gsap
+		// $(".start").on("click",function(){
+		//     TweenMax.to(".box1", 2, { left: "80%", borderRadius: "0%" });
+		// });  
+		// $(".reset").on("click",function(){
+		//     TweenMax.to(".box1", 0, { left: "0", borderRadius: "50%" });
+		// });  
+	
+		//javascript
+		const startBtn = document.querySelector('.start');
+		const resetBtn = document.querySelector('.reset');
+
+		startBtn.addEventListener('click', moveStart);
+		resetBtn.addEventListener('click', moveReset);
+		
+		function moveStart(){
+			TweenMax.to(".box1", 2, { left: "80%", borderRadius: "0%" });
+		}
+		function moveReset(){
+			TweenMax.to(".box1", 0, { left: "0", borderRadius: "50%" });
+		}
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample2 -->
+
+
+<script>
+    $(".choice a").on("click",function(e){
+        e.preventDefault();
+    });
+	$(".c2 .startJ").on("click",function(){
+		$(".w2 .box1").animate({ left: "80%", borderRadius: "0%" }, 2000);
+	}); 
+	$(".c2 .start").on("click",function(){
+		TweenMax.to(".w2 .box1", 2, { left: "80%", borderRadius: "0%" });
+	});  
+	$(".c2 .reset").on("click",function(){
+		TweenMax.to(".w2 .box1", 0, { left: "0", borderRadius: "50%" });
+	});    
+</script>
+<!-- //Sample2 -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- Sample3 -->
+<h4 class="pt50">3. Skew <span><a href="https://webstoryboy.github.io/gsap/sample660_3.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>버튼을 클릭하면 기울기가 변하는 애니메이션입니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box_wrap w3">
+			<div class="box1">box</div>
+			<div class="box2">box</div>
+			<div class="box3">box</div>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice c3">
+		<a href="#" class="reset">리셋</a>
+		<a href="#" class="startJ">[jQuery] 클릭하면 기울이면서 이동합니다.</a>
+		<a href="#" class="start">[GSAP] 클릭하면 기울이면서 이동합니다.</a>
+    </div>
+</div>
+<!-- sample3 -->
+
+
+<div class="sample">
+    <h5>JQUERY<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".startJ").on("click",function(){
+	$(".box1").animate({ left: "80%"}, 2000).css({ transform: "skewX(30deg)"});
+	$(".box2").animate({ left: "80%"}, 2000).css({ transform: "skewX(330deg)"});
+	$(".box3").animate({ left: "80%"}, 2000).css({ transform: "skewX(660deg)"});
+}); 
+$(".reset").on("click",function(){
+	$(".box1").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+	$(".box2").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+	$(".box3").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+});</code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+<div class="sample">
+    <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+	TweenMax.to(".box1", 2, { left: "80%", skewX:"30deg" });
+	TweenMax.to(".box2", 2, { left: "80%", skewX:"330deg" });
+	TweenMax.to(".box3", 2, { left: "80%", skewX:"660deg" });
+});  
+$(".choice .reset").on("click",function(){
+	TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", skewX: "0deg" });
+}); </code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+<div class="sample">
+    <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-javascript">const startBtn = document.querySelector('.start');
+const resetBtn = document.querySelector('.reset');
+
+startBtn.addEventListener('click', moveStart);
+resetBtn.addEventListener('click', moveReset);
+
+function moveStart(){
+	TweenMax.to(".box1", 2, { left: "80%", skewX:"30deg" });
+	TweenMax.to(".box2", 2, { left: "80%", skewX:"330deg" });
+	TweenMax.to(".box3", 2, { left: "80%", skewX:"660deg" });
+}
+function moveReset(){
+	TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", skewX: "0deg" });
+}</code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+<div class="sample">
+    <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;GSAP&lt;/title&gt;
+	&lt;style&gt;
+		.box_wrap {width: 100%;}
+		.box_wrap div {
+			display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+			border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+			background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div class="box_wrap"&gt;
+		&lt;div class="box1"&gt;box&lt;/div&gt;
+		&lt;div class="box2"&gt;box&lt;/div&gt;
+		&lt;div class="box3"&gt;box&lt;/div&gt;
+	&lt;/div&gt;
+
+	&lt;div class="choice"&gt;
+		&lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
+		&lt;a href="#" class="startJ"&gt;[jQuery] 클릭하면 이동합니다.&lt;/a&gt;
+		&lt;a href="#" class="start"&gt;[GSAP] 클릭하면 이동합니다.&lt;/a&gt;
+	&lt;/div&gt;
+	
+	&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+	&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+	&lt;script&gt;
+		$(".choice a").on("click",function(e){
+			e.preventDefault();
+		});
+
+		//jquery
+		$(".startJ").on("click",function(){
+			$(".box1").animate({ left: "80%"}, 2000).css({ transform: "skewX(30deg)"});
+			$(".box2").animate({ left: "80%"}, 2000).css({ transform: "skewX(330deg)"});
+			$(".box3").animate({ left: "80%"}, 2000).css({ transform: "skewX(660deg)"});
+		}); 
+		$(".reset").on("click",function(){
+			$(".box1").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+			$(".box2").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+			$(".box3").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+		});
+
+		//gsap
+		// $(".start").on("click",function(){
+		//     TweenMax.to(".box1", 2, { left: "80%", skewX:"30deg" });
+		//     TweenMax.to(".box2", 2, { left: "80%", skewX:"330deg" });
+		//     TweenMax.to(".box3", 2, { left: "80%", skewX:"660deg" });
+		// });  
+		// $(".choice .reset").on("click",function(){
+		//     TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", skewX: "0deg" });
+		// });  
+	
+		//javascript
+		const startBtn = document.querySelector('.start');
+		const resetBtn = document.querySelector('.reset');
+
+		startBtn.addEventListener('click', moveStart);
+		resetBtn.addEventListener('click', moveReset);
+		
+		function moveStart(){
+			TweenMax.to(".box1", 2, { left: "80%", skewX:"30deg" });
+			TweenMax.to(".box2", 2, { left: "80%", skewX:"330deg" });
+			TweenMax.to(".box3", 2, { left: "80%", skewX:"660deg" });
+		}
+		// function moveReset(){
+		//     TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", skewX: "0deg" });
+		// }
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample3 -->
+
+
+<script>
+    $(".choice a").on("click",function(e){
+        e.preventDefault();
+    });
+	$(".c3 .startJ").on("click",function(){
+		$(".w3 .box1").animate({ left: "80%"}, 2000).css({ transform: "skewX(30deg)"});
+		$(".w3 .box2").animate({ left: "80%"}, 2000).css({ transform: "skewX(330deg)"});
+		$(".w3 .box3").animate({ left: "80%"}, 2000).css({ transform: "skewX(660deg)"});
+	}); 
+	$(".c3 .reset").on("click",function(){
+		$(".w3 .box1").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+		$(".w3 .box2").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+		$(".w3 .box3").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+	});
+	$(".c3 .start").on("click",function(){
+		TweenMax.to(".w3 .box1", 2, { left: "80%", skewX:"30deg" });
+		TweenMax.to(".w3 .box2", 2, { left: "80%", skewX:"330deg" });
+		TweenMax.to(".w3 .box3", 2, { left: "80%", skewX:"660deg" });
+	});   
+</script>
+<!-- //Sample3 -->
+
+
+
+
+
+
+<!-- Sample4 -->
+<h4 class="pt50">4. Rotate <span><a href="https://webstoryboy.github.io/gsap/sample660_4.html" target="_blank"><img src="https://tistory3.daumcdn.net/tistory/2933724/skin/images/blank.gif" class="blank_icon"></a></span></h4>
+<p>버튼을 클릭하면 기울기가 변하는 애니메이션입니다. 제이쿼리 animate에서는 rotate가 적용되지 않습니다.</p>
+<div class="sample">
+    <h5>Sample1<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="ex">
+        <!-- ex -->
+        <div class="box_wrap w4">
+			<div class="box1">box</div>
+			<div class="box2">box</div>
+			<div class="box3">box</div>
+        </div>
+        <!-- ex -->
+    </div>
+    
+    <div class="choice c4">
+		<a href="#" class="reset">리셋</a>
+		<a href="#" class="startJ">[jQuery] 클릭하면 회전하면서 이동합니다.</a>
+        <a href="#" class="start">[GSAP] 클릭하면 회전하면서 이동합니다.</a>
+    </div>
+</div>
+<!-- sample4 -->
+
+
+<div class="sample">
+    <h5>JQUERY<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".startJ").on("click",function(){
+	$(".box1").animate({ left: "80%" }, 2000).css({ transform: "rotate(30deg)" });
+	$(".box2").animate({ left: "80%" }, 2000).css({ transform: "rotate(60deg)" });
+	$(".box3").animate({ left: "80%" }, 2000).css({ transform: "rotate(90deg)" });
+}); 
+$(".reset").on("click",function(){
+	$(".box1, .box2, .box3").animate({ left: "0"}, 0).css({ transform: "rotate(0deg)"});
+});</code></pre>
+    </div>
+</div>
+<!-- sample4 -->
+
+<div class="sample">
+    <h5>GSAP<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="script on">
+<pre class="line-numbers"><code class="language-javascript">$(".start").on("click",function(){
+	TweenMax.to(".box1", 2, { left:"90%", rotation: "30deg" });
+	TweenMax.to(".box2", 2, { left:"90%", rotation: "8rad" });
+	TweenMax.to(".box3", 2, { left:"90%", rotation: "630" });
+});  
+$(".reset").on("click",function(){
+	TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", skewX: "0deg" });
+});  </code></pre>
+    </div>
+</div>
+<!-- sample4 -->
+
+<div class="sample">
+    <h5>JAVASCRIPT<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-javascript">const startBtn = document.querySelector('.start');
+const resetBtn = document.querySelector('.reset');
+
+startBtn.addEventListener('click', moveStart);
+resetBtn.addEventListener('click', moveReset);
+
+function moveStart(){
+	TweenMax.to(".box1", 2, { left:"90%", rotation: "30deg" });
+	TweenMax.to(".box2", 2, { left:"90%", rotation: "8rad" });
+	TweenMax.to(".box3", 2, { left:"90%", rotation: "630" });
+}
+function moveReset(){
+	TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", skewX: "0deg" });
+}</code></pre>
+    </div>
+</div>
+<!-- sample4 -->
+
+<div class="sample">
+    <h5>TOTAL<span class="dot"><i></i><i></i><i></i></span></h5>
+    <div class="html on">
+<pre class="line-numbers"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;GSAP&lt;/title&gt;
+	&lt;style&gt;
+		.box_wrap {width: 100%;}
+		.box_wrap div {
+			display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
+			border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
+			background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div class="box_wrap"&gt;
+		&lt;div class="box1"&gt;box&lt;/div&gt;
+		&lt;div class="box2"&gt;box&lt;/div&gt;
+		&lt;div class="box3"&gt;box&lt;/div&gt;
+	&lt;/div&gt;
+
+	&lt;div class="choice"&gt;
+		&lt;a href="#" class="reset"&gt;리셋&lt;/a&gt;
+		&lt;a href="#" class="startJ"&gt;[jQuery] 클릭하면 회전하면서 이동합니다.&lt;/a&gt;
+		&lt;a href="#" class="start"&gt;[GSAP] 클릭하면 회전하면서 이동합니다.&lt;/a&gt;
+	&lt;/div&gt;
+	
+	&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+	&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"&gt;&lt;/script&gt;
+	&lt;script&gt;
+		$(".choice a").on("click",function(e){
+			e.preventDefault();
+		});
+
+		//jquery
+		$(".startJ").on("click",function(){
+			$(".box1").animate({ left: "80%" }, 2000).css({ transform: "rotate(30deg)" });
+			$(".box2").animate({ left: "80%" }, 2000).css({ transform: "rotate(60deg)" });
+			$(".box3").animate({ left: "80%" }, 2000).css({ transform: "rotate(90deg)" });
+		}); 
+		// $(".reset").on("click",function(){
+		//     $(".box1, .box2, .box3").animate({ left: "0"}, 0).css({ transform: "rotate(0deg)"});
+		// });
+
+		//gsap
+		// $(".start").on("click",function(){
+		//     TweenMax.to(".box1", 2, { left:"90%", rotation: "30deg" });
+		//     TweenMax.to(".box2", 2, { left:"90%", rotation: "8rad" });
+		//     TweenMax.to(".box3", 2, { left:"90%", rotation: "630" });
+		// });  
+		// $(".reset").on("click",function(){
+		//     TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", skewX: "0deg" });
+		// });  
+	
+		//javascript
+		const startBtn = document.querySelector('.start');
+		const resetBtn = document.querySelector('.reset');
+
+		startBtn.addEventListener('click', moveStart);
+		resetBtn.addEventListener('click', moveReset);
+		
+		function moveStart(){
+			TweenMax.to(".box1", 2, { left:"90%", rotation: "30deg" });
+			TweenMax.to(".box2", 2, { left:"90%", rotation: "8rad" });
+			TweenMax.to(".box3", 2, { left:"90%", rotation: "630" });
+		}
+		function moveReset(){
+			TweenMax.to([".box1",".box2",".box3"], 0, { left: "0", rotation: "0deg" });
+		}
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</div>
+<!-- sample4 -->
+
+
+<script>
+    $(".choice a").on("click",function(e){
+        e.preventDefault();
+    });
+	$(".c4 .startJ").on("click",function(){
+		$(".w4 .box1").animate({ left: "80%" }, 2000).css({ transform: "rotate(30deg)" });
+		$(".w4 .box2").animate({ left: "80%" }, 2000).css({ transform: "rotate(60deg)" });
+		$(".w4 .box3").animate({ left: "80%" }, 2000).css({ transform: "rotate(90deg)" });
+	}); 
+
+	const startBtn = document.querySelector('.c4 .start');
+	const resetBtn = document.querySelector('.c4 .reset');
+
+	startBtn.addEventListener('click', moveStart);
+	resetBtn.addEventListener('click', moveReset);
+	
+	function moveStart(){
+		TweenMax.to(".w4 .box1", 2, { left:"90%", rotation: "30deg" });
+		TweenMax.to(".w4 .box2", 2, { left:"90%", rotation: "8rad" });
+		TweenMax.to(".w4 .box3", 2, { left:"90%", rotation: "630" });
+	}
+	function moveReset(){
+		TweenMax.to([".w4 .box1",".w4 .box2",".w4 .box3"], 0, { left: "0", rotation: "0deg" });
+	} 
+</script>
+<!-- //Sample4 -->

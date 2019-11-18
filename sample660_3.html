@@ -7,8 +7,7 @@
         .box_wrap {width: 100%;}
         .box_wrap div {
             display: block; width: 60px; height: 60px; line-height: 65px; text-align: center; 
-            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px;
-            color: #fff; margin: 4px;
+            border-radius: 50%; overflow: hidden; position: relative; font-size: 12px; color: #fff; margin: 4px;
             background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
         }
     </style>
@@ -22,30 +21,31 @@
 
     <div class="choice">
         <a href="#" class="reset">리셋</a>
-        <a href="#" class="start">클릭하면 오른쪽으로 이동하면서 백그라운드 색이 변경됩니다.</a>
+        <a href="#" class="startJ">[jQuery] 클릭하면 이동합니다.</a>
+        <a href="#" class="start">[GSAP] 클릭하면 이동합니다.</a>
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script>
-        $("a").on("click",function(e){
+        $(".choice a").on("click",function(e){
             e.preventDefault();
         });
 
         //jquery
-        // $(".choice .start").on("click",function(){
-        //     $(".box1").animate({ left: "80%"}, 2000).css({ transform: "skewX(30deg)"});
-        //     $(".box2").animate({ left: "80%"}, 2000).css({ transform: "skewX(330deg)"});
-        //     $(".box3").animate({ left: "80%"}, 2000).css({ transform: "skewX(660deg)"});
-        // }); 
-        // $(".choice .reset").on("click",function(){
-        //     $(".box1").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
-        //     $(".box2").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
-        //     $(".box3").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
-        // });
+        $(".startJ").on("click",function(){
+            $(".box1").animate({ left: "80%"}, 2000).css({ transform: "skewX(30deg)"});
+            $(".box2").animate({ left: "80%"}, 2000).css({ transform: "skewX(330deg)"});
+            $(".box3").animate({ left: "80%"}, 2000).css({ transform: "skewX(660deg)"});
+        }); 
+        $(".reset").on("click",function(){
+            $(".box1").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+            $(".box2").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+            $(".box3").animate({ left: "0"}, 0).css({ transform: "skewX(0deg)"});
+        });
 
         //gsap
-        // $(".choice .start").on("click",function(){
+        // $(".start").on("click",function(){
         //     TweenMax.to(".box1", 2, { left: "80%", skewX:"30deg" });
         //     TweenMax.to(".box2", 2, { left: "80%", skewX:"330deg" });
         //     TweenMax.to(".box3", 2, { left: "80%", skewX:"660deg" });
